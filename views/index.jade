@@ -1,0 +1,18 @@
+extends layout
+
+block content
+	.jumbotron
+		.container
+			h1
+				span(data-bind="text: secondsToHms(blindTime())")
+				small  Time Remaining
+			h2
+				span(data-bind="text: smallBlind")
+				| /
+				span(data-bind="text: bigBlind")
+				small  Blind Level 1
+			hr
+			p
+				a.btn.btn-primary.btn-lg(data-bind="click: StartCounter, visible: !isRunning()") Start
+				| 
+				a.btn.btn-default.btn-lg(data-bind="click: StopCounter, visible: isRunning()") Pause

@@ -1,0 +1,29 @@
+@import "../../node_modules/bootstrap-less/bootstrap/bootstrap.less";
+
+body {
+	padding: 50px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.modal-backdrop {
+	bottom: 0;
+	position: fixed;
+	.in {
+		opacity: 0.9;
+	}
+}
+
+.modal-fullscreen {
+	.modal-dialog {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+
+	.modal-content {
+		height: auto;
+		min-height: 100%;
+		border-radius: 0;
+	}
+}
