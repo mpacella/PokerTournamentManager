@@ -1,7 +1,6 @@
 @import "../../node_modules/bootstrap-less/bootstrap/bootstrap.less";
 
 body {
-	padding: 50px;
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -25,5 +24,60 @@ body {
 		height: auto;
 		min-height: 100%;
 		border-radius: 0;
+	}
+}
+
+.navbar {
+	.glyphicon {
+		font-size: 24px;
+	}
+}
+
+.jumbotron {
+	border: 20px solid transparent;
+}
+
+.jumbotron&.bg-success {
+	.bg-success
+}
+.jumbotron&.bg-warning {
+	.bg-warning
+}
+.jumbotron&.bg-danger {
+	.bg-danger
+}
+
+.interval-danger-odd {
+	border: 20px solid darken(@state-danger-border, 50%);
+}
+
+@media screen and (max-width: @screen-sm-max) {
+	.jumbotron {
+		margin-top: 50px;
+		h1, .h1 {
+			font-size: 100px;
+		}
+		h2, .h2 {
+			font-size: 50px;
+		}
+	}
+}
+
+@media screen and (min-width: @screen-sm) {
+	.jumbotron {
+		padding: 24px 0;
+		margin-top: 60px;
+		h1, .h1 {
+			font-size: 120px;
+			small {
+				font-size: 24px;
+			}
+		}
+		h2, .h2 {
+			font-size: 60px;
+			small {
+				font-size: 24px;
+			}
+		}
 	}
 }
