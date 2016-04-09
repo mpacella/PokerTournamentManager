@@ -1,14 +1,14 @@
 extends layout
 
 block content
-	.jumbotron(data-bind="css: { 'bg-success': blindTime() > 180, 'bg-warning': blindTime() > 60 && blindTime() <= 180, 'bg-danger': blindTime() <= 60, 'interval-danger-odd': blindTime() < 10 && blindTime() % 2 === 1}")
+	.jumbotron(data-bind="css: { 'bg-success': blindTime() > intervalTime() / 2 && blindTime() > 180, 'bg-info': blindTime() <= intervalTime() / 2 && blindTime() > 180, 'bg-warning': blindTime() > 60 && blindTime() <= 180, 'bg-danger': blindTime() <= 60, 'interval-danger-odd': blindTime() < 10 && blindTime() % 2 === 1}")
 		.container-fluid
-			h1.text-center
-				span(data-bind="text: secondsToHms(blindTime())")
-			p.text-center.text-muted.hidden-xs  Time Remaining
-			h2.text-center
-				span(data-bind="text: smallBlind() + '/' + bigBlind()")
-			p.text-center.text-muted.hidden-xs(data-bind="text: ' Blind Level ' + blindLevel()")
+			p.text-center.text-muted.hidden-xs Time Remaining
+			h1.text-center(data-bind="text: secondsToHms(blindTime())")
+			p.text-center.text-muted.hidden-xs Blinds
+			h2.text-center(data-bind="text: smallBlind() + '/' + bigBlind()")
+			p.text-center.text-muted.hidden-xs Blind Level 
+			h3.text-center(data-bind="text: blindLevel")
 			hr
 			p.text-center
 				a.btn.btn-primary.btn-lg(data-bind="click: StartCounter, visible: !isRunning()") Start

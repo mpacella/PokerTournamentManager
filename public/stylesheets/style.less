@@ -1,7 +1,9 @@
 @import "../../node_modules/bootstrap-less/bootstrap/bootstrap.less";
+@import "variables.less";
+@import "theme.less";
 
-body {
-	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.clickable {
+	cursor: pointer;
 }
 
 .modal-backdrop {
@@ -19,7 +21,6 @@ body {
 		margin: 0;
 		padding: 0;
 	}
-
 	.modal-content {
 		height: auto;
 		min-height: 100%;
@@ -36,19 +37,25 @@ body {
 .jumbotron {
 	border: 20px solid transparent;
 }
-
+.jumbotron&.bg-info {
+	.bg-info
+}
+.jumbotron&.bg-danger {
+	.bg-danger
+}
 .jumbotron&.bg-success {
 	.bg-success
 }
 .jumbotron&.bg-warning {
 	.bg-warning
 }
-.jumbotron&.bg-danger {
-	.bg-danger
-}
 
 .interval-danger-odd {
 	border: 20px solid darken(@state-danger-border, 50%);
+}
+
+.red {
+	color: red;
 }
 
 @media screen and (max-width: @screen-sm-max) {
@@ -65,19 +72,13 @@ body {
 
 @media screen and (min-width: @screen-sm) {
 	.jumbotron {
-		padding: 24px 0;
+		padding: 12px 0;
 		margin-top: 60px;
 		h1, .h1 {
 			font-size: 120px;
-			small {
-				font-size: 24px;
-			}
 		}
 		h2, .h2 {
 			font-size: 60px;
-			small {
-				font-size: 24px;
-			}
 		}
 	}
 }

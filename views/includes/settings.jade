@@ -1,5 +1,5 @@
 #settings-modal.modal.fade(tabindex="-1", role="dialog")
-	.modal-dialog
+	.modal-dialog.modal-lg
 		.modal-content
 			.modal-header
 				button.close(type="button", data-dismiss="modal", aria-label="Close")
@@ -7,37 +7,50 @@
 				h4.modal-title Settings
 			.modal-body
 				form
-					.row
-						.col-sm-6
-							.form-group
-								label(for="settings-interval-time-seconds") Interval in seconds
-								input#settings-interval-time-seconds.form-control(type="numeric", placeholder="Interval", data-bind="value: intervalTime")
-						.col-sm-6
-							.form-group
-								label(for="settings-interval-time") Time Interval
-								input#settings-interval-time.form-control(type="text", readonly="true", data-bind="value: secondsToHms(intervalTime())", tabindex="-1")
-					.row
-						.col-sm-12
-							.form-group
-								label(for="settings-smallest-chip") Smallest Chip
-								input#settings-smallest-chip.form-control(type="numeric", placeholder="Smallest Chip", data-bind="value: smallestChip")
-					.row
-						.col-sm-6
-							.form-group
-								label(for="settings-elapsed-time-seconds") Time Remaining in seconds
-								input#settings-elapsed-time-seconds.form-control(type="numeric", placeholder="Time Remaining", data-bind="value: blindTime")
-						.col-sm-6
-							.form-group
-								label(for="settings-elapsed-time") Time Remaining
-								input#settings-elapsed-time.form-control(type="text", readonly="true", data-bind="value: secondsToHms(blindTime())", tabindex="-1")
-					.row
-						.col-sm-6
-							.form-group
-								label(for="settings-small-blind") Small Blind
-								input#settings-small-blind.form-control(type="numeric", placeholder="Small Blind", data-bind="value: smallBlind")
-						.col-sm-6
-							.form-group
-								label(for="settings-big-blind") Big Blind
-								input#settings-big-blind.form-control(type="numeric", placeholder="Big Blind", data-bind="value: bigBlind")
+					#settings-accordion.panel-group(role="tablist")
+						.panel.panel-default
+							.panel-heading(role="tab")
+								h4.panel-title.clickable(data-target="#settings-basic-tab", data-toggle="collapse", data-parent="#settings-accordion")
+									a Basic Settings
+							#settings-basic-tab.panel-collapse.collapse.in(role="tabpanel")
+								.panel-body
+									.row
+										.col-sm-6
+											.form-group
+												label(for="settings-interval-time-seconds") Interval in seconds
+												input#settings-interval-time-seconds.form-control(type="numeric", placeholder="Interval", data-bind="value: intervalTime")
+										.col-sm-6
+											.form-group
+												label(for="settings-interval-time") Time Interval
+												input#settings-interval-time.form-control(type="text", readonly="true", data-bind="value: secondsToHms(intervalTime())", tabindex="-1")
+									.row
+										.col-sm-6
+											.form-group
+												label(for="settings-smallest-chip") Smallest Chip
+												input#settings-smallest-chip.form-control(type="numeric", placeholder="Smallest Chip", data-bind="value: smallestChip")
+						.panel.panel-default
+							.panel-heading(role="tab")
+								h4.panel-title.clickable(data-target="#settings-advanced-tab", data-toggle="collapse", data-parent="#settings-accordion")
+									a Advanced Settings
+							#settings-advanced-tab.panel-collapse.collapse(role="tabpanel")
+								.panel-body
+									.row
+										.col-sm-6
+											.form-group
+												label(for="settings-elapsed-time-seconds") Time Remaining in seconds
+												input#settings-elapsed-time-seconds.form-control(type="numeric", placeholder="Time Remaining", data-bind="value: blindTime")
+										.col-sm-6
+											.form-group
+												label(for="settings-elapsed-time") Time Remaining
+												input#settings-elapsed-time.form-control(type="text", readonly="true", data-bind="value: secondsToHms(blindTime())", tabindex="-1")
+									.row
+										.col-sm-6
+											.form-group
+												label(for="settings-small-blind") Small Blind
+												input#settings-small-blind.form-control(type="numeric", placeholder="Small Blind", data-bind="value: smallBlind")
+										.col-sm-6
+											.form-group
+												label(for="settings-big-blind") Big Blind
+												input#settings-big-blind.form-control(type="numeric", placeholder="Big Blind", data-bind="value: bigBlind")
 			.modal-footer
 				button.btn.btn-default(type="button", data-dismiss="modal") Close
