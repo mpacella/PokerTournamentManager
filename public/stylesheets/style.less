@@ -2,6 +2,17 @@
 @import "variables.less";
 @import "theme.less";
 
+body {
+	background-color: fadeout(@gray-light, 10%);
+}
+
+.tab-pane {
+	.container-fluid {
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+}
+
 .clickable {
 	cursor: pointer;
 }
@@ -30,7 +41,7 @@
 
 .navbar {
 	.glyphicon {
-		font-size: 24px;
+		font-size: 16px;
 	}
 }
 

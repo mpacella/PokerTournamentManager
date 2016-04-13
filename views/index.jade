@@ -5,8 +5,13 @@ block content
 		.container-fluid
 			p.text-center.text-muted.hidden-xs Time Remaining
 			h1.text-center(data-bind="text: secondsToHms(blindTime())")
-			p.text-center.text-muted.hidden-xs Blinds
-			h2.text-center(data-bind="text: smallBlind() + '/' + bigBlind()")
+			.row
+				#blinds(data-bind="css: { 'col-sm-12': !enableAntes, 'col-sm-3': enableAntes, 'col-sm-offset-3': enableAntes }")
+					p.text-center.text-muted.hidden-xs Blinds
+					h2.text-center(data-bind="text: smallBlind() + '/' + bigBlind()")
+				.col-sm-3(data-bind="visible: enableAntes")
+					p.text-center.text-muted.hidden-xs Ante
+					h2.text-center(data-bind="text: ante")
 			p.text-center.text-muted.hidden-xs Blind Level 
 			h3.text-center(data-bind="text: blindLevel")
 			hr

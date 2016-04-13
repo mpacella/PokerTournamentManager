@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('poker-tournament-manager:server');
 var http = require('http');
+var emitter = require('../events/app-emitter');
 
 /**
  * Get port from environment and store in Express.
@@ -34,6 +35,10 @@ io.on("connection", function(socket) {
 	socket.on("chat", function(message) {
 		socket.broadcast.emit("message", message);
 	});
+});
+
+emitter.on("pollingEvent", function (m) { 
+	io.sockets.volatile.emit("pollingEvent", m);
 });
 
 /**

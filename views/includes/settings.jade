@@ -7,50 +7,64 @@
 				h4.modal-title Settings
 			.modal-body
 				form
-					#settings-accordion.panel-group(role="tablist")
-						.panel.panel-default
-							.panel-heading(role="tab")
-								h4.panel-title.clickable(data-target="#settings-basic-tab", data-toggle="collapse", data-parent="#settings-accordion")
-									a Basic Settings
-							#settings-basic-tab.panel-collapse.collapse.in(role="tabpanel")
-								.panel-body
-									.row
-										.col-sm-6
-											.form-group
-												label(for="settings-interval-time-seconds") Interval in seconds
-												input#settings-interval-time-seconds.form-control(type="numeric", placeholder="Interval", data-bind="value: intervalTime")
-										.col-sm-6
-											.form-group
-												label(for="settings-interval-time") Time Interval
-												input#settings-interval-time.form-control(type="text", readonly="true", data-bind="value: secondsToHms(intervalTime())", tabindex="-1")
-									.row
-										.col-sm-6
-											.form-group
-												label(for="settings-smallest-chip") Smallest Chip
-												input#settings-smallest-chip.form-control(type="numeric", placeholder="Smallest Chip", data-bind="value: smallestChip")
-						.panel.panel-default
-							.panel-heading(role="tab")
-								h4.panel-title.clickable(data-target="#settings-advanced-tab", data-toggle="collapse", data-parent="#settings-accordion")
-									a Advanced Settings
-							#settings-advanced-tab.panel-collapse.collapse(role="tabpanel")
-								.panel-body
-									.row
-										.col-sm-6
-											.form-group
-												label(for="settings-elapsed-time-seconds") Time Remaining in seconds
-												input#settings-elapsed-time-seconds.form-control(type="numeric", placeholder="Time Remaining", data-bind="value: blindTime")
-										.col-sm-6
-											.form-group
-												label(for="settings-elapsed-time") Time Remaining
-												input#settings-elapsed-time.form-control(type="text", readonly="true", data-bind="value: secondsToHms(blindTime())", tabindex="-1")
-									.row
-										.col-sm-6
-											.form-group
-												label(for="settings-small-blind") Small Blind
-												input#settings-small-blind.form-control(type="numeric", placeholder="Small Blind", data-bind="value: smallBlind")
-										.col-sm-6
-											.form-group
-												label(for="settings-big-blind") Big Blind
-												input#settings-big-blind.form-control(type="numeric", placeholder="Big Blind", data-bind="value: bigBlind")
+					ul.nav.nav-tabs(role="tablist")
+						li.active(role="presentation")
+							a(href="#settings-basic-tab", role="tab", data-toggle="tab") Basic Settings
+						li(role="presentation")
+							a(href="#settings-advanced-tab", role="tab", data-toggle="tab") Advanced Settings
+						li(role="presentation")
+							a(href="#settings-blinds-tab", role="tab", data-toggle="tab") Blind Schedule
+					.tab-content
+						#settings-basic-tab.tab-pane.active(role="tabpanel")
+							.container-fluid
+								.row
+									.col-sm-6
+										.form-group
+											label(for="settings-interval-time-seconds") Interval in seconds
+											input#settings-interval-time-seconds.form-control(type="number", placeholder="Interval", data-bind="value: intervalTime")
+									.col-sm-6
+										.form-group
+											label(for="settings-interval-time") Time Interval
+											input#settings-interval-time.form-control(type="text", readonly="true", data-bind="value: secondsToHms(intervalTime())", tabindex="-1")
+								.row
+									.col-sm-12
+										.form-group
+											label(for="settings-smallest-chip") Smallest Chip
+											input#settings-smallest-chip.form-control(type="number", placeholder="Smallest Chip", data-bind="value: smallestChip")
+								.row
+									.col-sm-12
+										.checkbox
+											label
+												input(type="checkbox", data-bind="checked: enableAntes")
+												| Enable Antes
+						#settings-advanced-tab.tab-pane(role="tabpanel")
+							.container-fluid
+								.row
+									.col-sm-6
+										.form-group
+											label(for="settings-elapsed-time-seconds") Time Remaining in seconds
+											input#settings-elapsed-time-seconds.form-control(type="number", placeholder="Time Remaining", data-bind="value: blindTime")
+									.col-sm-6
+										.form-group
+											label(for="settings-elapsed-time") Time Remaining
+											input#settings-elapsed-time.form-control(type="text", readonly="true", data-bind="value: secondsToHms(blindTime())", tabindex="-1")
+						#settings-blinds-tab.tab-pane(role="tabpanel")
+							.container-fluid
+								table.table.table-condensed.table-striped
+									thead
+										tr
+											th Level
+											th Small Blind
+											th Big Blind
+											th(data-bind="visible: enableAntes") Ante
+									tbody(data-bind="foreach: blindIntervals")
+										tr
+											td(data-bind="text: $index() + 1")
+											td
+												input(type="number", data-bind="value: smallBlind")
+											td
+												input(type="number", data-bind="value: bigBlind")
+											td(data-bind="visible: $parent.enableAntes")
+												input(type="number", data-bind="value: ante")
 			.modal-footer
 				button.btn.btn-default(type="button", data-dismiss="modal") Close

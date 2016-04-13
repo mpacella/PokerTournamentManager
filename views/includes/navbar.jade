@@ -12,8 +12,12 @@ nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
 		.navbar-collapse.collapse
 			ul.nav.navbar-nav.navbar-right
 				li
+					a(href="#")
+						span.glyphicon.glyphicon-question-sign
+						|  About
+				li(data-bind="visible: !isRunning()")
 					a(href="#", data-toggle="modal", data-target="#settings-modal") 
-						span.glyphicon.glyphicon-asterisk
+						span.glyphicon.glyphicon-cog
 						|  Settings
 		// /.navbar-collapse
 include settings.jade
