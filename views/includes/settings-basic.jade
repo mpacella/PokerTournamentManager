@@ -1,0 +1,21 @@
+.container-fluid
+	.row
+		.col-sm-6
+			.form-group
+				label(for="settings-interval-time-seconds") Interval in seconds
+				input#settings-interval-time-seconds.form-control(type="number", placeholder="Interval", data-bind="value: intervalTime")
+		.col-sm-6
+			.form-group
+				label(for="settings-interval-time") Time Interval
+				input#settings-interval-time.form-control(type="text", readonly="true", data-bind="value: secondsToHms(intervalTime())", tabindex="-1")
+	.row
+		.col-sm-12
+			.form-group
+				label(for="settings-smallest-chip") Smallest Chip
+				input#settings-smallest-chip.form-control(type="number", placeholder="Smallest Chip", data-bind="value: smallestChip")
+	.row
+		.col-sm-12
+			.checkbox
+				label
+					input(type="checkbox", data-bind="checked: enableAntes")
+					| Enable Antes

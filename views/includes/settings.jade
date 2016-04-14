@@ -16,55 +16,10 @@
 							a(href="#settings-blinds-tab", role="tab", data-toggle="tab") Blind Schedule
 					.tab-content
 						#settings-basic-tab.tab-pane.active(role="tabpanel")
-							.container-fluid
-								.row
-									.col-sm-6
-										.form-group
-											label(for="settings-interval-time-seconds") Interval in seconds
-											input#settings-interval-time-seconds.form-control(type="number", placeholder="Interval", data-bind="value: intervalTime")
-									.col-sm-6
-										.form-group
-											label(for="settings-interval-time") Time Interval
-											input#settings-interval-time.form-control(type="text", readonly="true", data-bind="value: secondsToHms(intervalTime())", tabindex="-1")
-								.row
-									.col-sm-12
-										.form-group
-											label(for="settings-smallest-chip") Smallest Chip
-											input#settings-smallest-chip.form-control(type="number", placeholder="Smallest Chip", data-bind="value: smallestChip")
-								.row
-									.col-sm-12
-										.checkbox
-											label
-												input(type="checkbox", data-bind="checked: enableAntes")
-												| Enable Antes
+							include settings-basic.jade
 						#settings-advanced-tab.tab-pane(role="tabpanel")
-							.container-fluid
-								.row
-									.col-sm-6
-										.form-group
-											label(for="settings-elapsed-time-seconds") Time Remaining in seconds
-											input#settings-elapsed-time-seconds.form-control(type="number", placeholder="Time Remaining", data-bind="value: blindTime")
-									.col-sm-6
-										.form-group
-											label(for="settings-elapsed-time") Time Remaining
-											input#settings-elapsed-time.form-control(type="text", readonly="true", data-bind="value: secondsToHms(blindTime())", tabindex="-1")
+							include settings-advanced.jade
 						#settings-blinds-tab.tab-pane(role="tabpanel")
-							.container-fluid
-								table.table.table-condensed.table-striped
-									thead
-										tr
-											th Level
-											th Small Blind
-											th Big Blind
-											th(data-bind="visible: enableAntes") Ante
-									tbody(data-bind="foreach: blindIntervals")
-										tr
-											td(data-bind="text: $index() + 1")
-											td
-												input(type="number", data-bind="value: smallBlind")
-											td
-												input(type="number", data-bind="value: bigBlind")
-											td(data-bind="visible: $parent.enableAntes")
-												input(type="number", data-bind="value: ante")
+							include settings-blinds.jade
 			.modal-footer
 				button.btn.btn-default(type="button", data-dismiss="modal") Close

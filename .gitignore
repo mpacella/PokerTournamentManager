@@ -34,3 +34,5 @@ node_modules
 
 # Computed Stylesheets
 public/stylesheets/style.css
+poker-tournament-manager.js
+poker-tournament-manager.min.js

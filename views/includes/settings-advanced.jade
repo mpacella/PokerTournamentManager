@@ -1,0 +1,10 @@
+.container-fluid
+	.row
+		.col-sm-6
+			.form-group
+				label(for="settings-elapsed-time-seconds") Time Remaining in seconds
+				input#settings-elapsed-time-seconds.form-control(type="number", placeholder="Time Remaining", data-bind="value: blindTime")
+		.col-sm-6
+			.form-group
+				label(for="settings-elapsed-time") Time Remaining
+				input#settings-elapsed-time.form-control(type="text", readonly="true", data-bind="value: secondsToHms(blindTime())", tabindex="-1")

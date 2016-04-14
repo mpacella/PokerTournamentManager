@@ -6,18 +6,15 @@ nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
 				span.icon-bar
 				span.icon-bar
 				span.icon-bar
-			a.navbar-brand(href='#') 
+			a.navbar-brand(href='#', data-toggle="modal", data-target="#about-modal") 
 				span.glyphicon.glyphicon-heart.red
 				|  Poker Tourney Manager
 		.navbar-collapse.collapse
 			ul.nav.navbar-nav.navbar-right
-				li
-					a(href="#")
-						span.glyphicon.glyphicon-question-sign
-						|  About
 				li(data-bind="visible: !isRunning()")
 					a(href="#", data-toggle="modal", data-target="#settings-modal") 
 						span.glyphicon.glyphicon-cog
 						|  Settings
 		// /.navbar-collapse
 include settings.jade
+include about.jade
