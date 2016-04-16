@@ -11,6 +11,10 @@ nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
 				|  Poker Tourney Manager
 		.navbar-collapse.collapse
 			ul.nav.navbar-nav.navbar-right
+				li
+					a(href="#", data-bind="click: broadcast") 
+						span.glyphicon.glyphicon-earphone
+						|  Broadcast
 				li(data-bind="visible: !isRunning()")
 					a(href="#", data-toggle="modal", data-target="#settings-modal") 
 						span.glyphicon.glyphicon-cog

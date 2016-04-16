@@ -1,4 +1,3 @@
-/*jshint strict:false */
 module.exports = function(grunt) {
 
   grunt.initConfig({
@@ -11,7 +10,6 @@ module.exports = function(grunt) {
         src: ['node_modules/jquery/dist/jquery.min.js', 
         	'node_modules/bootstrap-less/js/bootstrap.min.js',
         	'node_modules/knockout/build/output/knockout-latest.js',
-        	'node_modules/socket.io-client/socket.io.js',
         	'public/javascripts/viewmodels/tournament.js', 
         	'public/javascripts/app.js'],
         dest: 'public/javascripts/<%= pkg.name %>.js'
@@ -19,7 +17,8 @@ module.exports = function(grunt) {
     },
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n',
+        sourceMap: true
       },
       dist: {
         files: {
@@ -51,7 +50,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
 
   grunt.registerTask('test', ['jshint']);
-
+  grunt.registerTask('dev', ['jshint', 'concat']);
   grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
 
 };

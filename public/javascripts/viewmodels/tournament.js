@@ -1,4 +1,6 @@
 var TournamentViewModel = function() {
+	'use strict';
+	
 	var self = this;
 
 	self.suggestedBlinds = {
@@ -43,6 +45,32 @@ var TournamentViewModel = function() {
         	self.addBlindBasedOnPrevious(idx - 1);
         }
         return idx;
+	};
+
+	self.broadcast = function() {
+		$.ajax({
+			url: "/api/init",
+			data: ko.toJSON(self),
+			contentType: "application/json",
+			dataType: "json",
+			method: "POST"
+		}).done(function(result) {
+			console.log(result);
+		}).fail(function(err) {
+			console.log(err);
+		});
+	};
+
+	self.secondsToHms = function(d) {
+		d = Number(d);
+		var h = Math.floor(d / 3600);
+		var m = Math.floor(d % 3600 / 60);
+		var s = Math.floor(d % 3600 % 60);
+		var result = "";
+
+		result = ((h > 0 ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s); 
+
+		return result;
 	};
 
 	self.tournamentStyles = ko.computed(function() {

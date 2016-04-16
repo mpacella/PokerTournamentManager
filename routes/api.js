@@ -1,33 +1,30 @@
 var express = require('express');
 var router = express.Router();
 var emitter = require('../events/app-emitter');
+var tournament = require('../models/tournament');
 
-var timer = 0;
-var blindsTimer = null;
-
-router.get('/', function(req, res, next) {
-	res.json({'timer':timer, 'status': blindsTimer === null ? "Paused" : "Running"});
+router.get('/data', function(req, res, next) {
+	res.json(tournament.data === null ? {} : tournament.data);
 });
 
-router.get('/start', function(req, res, next) {
-	if (blindsTimer === null) {
-		blindsTimer = setInterval(function() {
-			timer++;
-			if (timer % 10 === 1) {
-				emitter.emit("pollingEvent", "10 seconds");
-			}
-		}, 1000);
-	}
-	res.json({'status': "Started"});
+router.post('/init', function(req, res, next) {
+	tournament.init(req.body);
+	res.json(tournament.data);
+});
+
+router.get('/resume', function(req, res, next) {
+	tournament.start();
+	res.json({timer: tournament.timer});
 });
 
 router.get('/pause', function(req, res, next) {
-	res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-	res.header('Expires', '-1');
-	res.header('Pragma', 'no-cache');
-	clearInterval(blindsTimer);
-	blindsTimer = null;
-	res.json({'status': "Paused"});
+	tournament.pause();
+	res.json({timer: tournament.timer});
+});
+
+router.get('/reset', function(req, res, next) {
+	tournament.reinit();
+	res.json({timer: tournament.timer});
 });
 
 module.exports = router;

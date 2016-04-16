@@ -8,7 +8,11 @@
 				th(data-bind="visible: enableAntes") Ante
 		tbody(data-bind="foreach: blindIntervals")
 			tr
-				td(data-bind="text: $index() + 1")
+				td
+					.radio.no-margin
+						label
+							input(type="radio", data-bind="checkedValue: $index()+1, checked: $parent.blindLevel")
+							span(data-bind="text: $index() + 1")
 				td
 					input(type="number", data-bind="value: smallBlind")
 				td
