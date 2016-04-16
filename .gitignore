@@ -36,3 +36,4 @@ node_modules
 public/stylesheets/style.css
 poker-tournament-manager.js
 poker-tournament-manager.min.js
+poker-tournament-manager.min.js.map
